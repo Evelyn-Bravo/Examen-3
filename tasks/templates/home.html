@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></head>
+
+<!-- hero section-->
+<section class="bg-dark text-white text-center py-5"
+  style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://static.vecteezy.com/system/resources/thumbnails/008/716/344/original/footage-of-beautiful-colorful-white-tulips-flowers-bloom-in-spring-garden-decorative-violet-tulip-flower-blossom-in-springtime-beauty-of-nature-vibrant-natural-colors-video.jpg') center/cover no-repeat; height: 700px;">
+  <div class="container d-flex flex-column justify-content-center h-100">
+    <h1 class="display-4 fw-bold mb-4">Flores que enamoran</h1>
+    <p class="lead mb-4">Arreglos florales diseñados con pasión para cada momento especial.</p>
+  </div>
+</section>
+
+<!--Nuestros productos-->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Nuestros Arreglos</h2>
+      <div class="mx-auto" style="width: 60px; height: 4px; background-color: #ff6b81; margin-top: 15px;"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <img
+            src="https://wildfloradesign.com/cdn/shop/files/01A8CFB4-9CB7-4DE2-A486-6B213498A87C_1500x1500.jpg?v=1744839499"
+            class="card-img-top" alt="Spring Dreams" style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5>Spring Dreams</h5>
+            <a href="{% url 'catalogo' %}" class="btn btn-sm" style="background-color: #ff6b81; color: white;">Ver
+              detalles</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <img
+            src="https://styleblueprint.com/wp-content/uploads/2024/04/SB-Nashville-FINDS-Bouquet-Lillians-Lillians-1536x1536.webp"
+            class="card-img-top" alt="Lillian's Whisper" style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5>Lillian's Whisper</h5>
+            <a href="{% url 'catalogo' %}" class="btn btn-sm" style="background-color: #ff6b81; color: white;">Ver
+              detalles</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <img
+            src="https://wildfloradesign.com/cdn/shop/files/D238D43B-6C3C-45C5-8EA9-52235A0128D8_1500x1500.jpg?v=1737582401"
+            class="card-img-top" alt="Apricot Dreams" style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5>Apricot Dreams</h5>
+            <a href="{% url 'catalogo' %}" class="btn btn-sm" style="background-color: #ff6b81; color: white;">Ver
+              detalles</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <img
+            src="https://vianafloral.com/cdn/shop/files/QuincyFlorist_FlowerdeliveryinBoston3.jpg?v=1713207036&width=600"
+            class="card-img-top" alt="Peach Lavender Fizz" style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5>Peach Lavender Fizz</h5>
+            <a href="{% url 'catalogo' %}" class="btn btn-sm" style="background-color: #ff6b81; color: white;">Ver
+              detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{% url 'catalogo' %}" class="btn btn-outline-dark">Ver todo el catálogo</a>
+    </div>
+  </div>
+</section>
+
+<!--Sobre nosotros-->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Sobre Nosotros</h2>
+      <div class="mx-auto" style="width: 60px; height: 4px; background-color: #ff6b81; margin-top: 15px;"></div>
+    </div>
+    
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="https://i.ytimg.com/vi/IOFJulxKL0g/maxresdefault.jpg" alt="Nuestro taller" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-6">
+        <p class="lead mb-3">En Florería Bella Flor, creemos que cada flor tiene una historia que contar.</p>
+        <p>Desde 2010, creamos arreglos únicos que transmiten amor, gratitud y alegría. Nuestra pasión es llenar de color y aroma los momentos más especiales de tu vida.</p>
+        <p>Seleccionamos cuidadosamente cada flor para garantizar frescura y belleza en cada arreglo.</p>
+        <a href="#" class="btn mt-3" style="background-color: #ff6b81; color: white;">Conócenos más</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--servicios-->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold"></h2>
+      <div class="mx-auto" style="width: 60px; height: 4px; background-color: #ff6b81; margin-top: 15px;"></div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 text-center h-100 p-3">
+          <div class="card-body">
+            <i class="fas fa-gift mb-3" style="font-size: 2.5rem; color: #ff6b81;"></i>
+            <h4>Arreglos Personalizados</h4>
+            <p>Diseñamos arreglos que reflejan tu personalidad y se adaptan a cualquier ocasión especial.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 text-center h-100 p-3">
+          <div class="card-body">
+            <i class="fas fa-truck mb-3" style="font-size: 2.5rem; color: #ff6b81;"></i>
+            <h4>Entrega a Domicilio</h4>
+            <p>Llevamos tus flores directamente a la puerta de quien quieres sorprender.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 text-center h-100 p-3">
+          <div class="card-body">
+            <i class="fas fa-heart mb-3" style="font-size: 2.5rem; color: #ff6b81;"></i>
+            <h4>Eventos Especiales</h4>
+            <p>Decoramos bodas, cumpleaños y todo tipo de celebraciones con arreglos florales únicos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+          
+<!--Contacto -->
+
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Contacto</h2>
+      <div class="mx-auto" style="width: 60px; height: 4px; background-color: #ff6b81; margin-top: 15px;"></div>
+      <p class="mt-3">¿Quieres un arreglo personalizado? Contáctanos hoy mismo.</p>
+    </div>
+    
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="row text-center">
+              <div class="col-md-4 mb-3 mb-md-0">
+                <i class="fas fa-map-marker-alt mb-3" style="font-size: 2rem; color: #ff6b81;"></i>
+                <h5>Dirección</h5>
+                <p class="text-muted">Av. de las Flores 123, Ciudad Juárez</p>
+              </div>
+              
+              <div class="col-md-4 mb-3 mb-md-0">
+                <i class="fas fa-phone mb-3" style="font-size: 2rem; color: #ff6b81;"></i>
+                <h5>Teléfono</h5>
+                <p class="text-muted">+52 656 123 4567</p>
+              </div>
+              
+              <div class="col-md-4">
+                <i class="fas fa-envelope mb-3" style="font-size: 2rem; color: #ff6b81;"></i>
+                <h5>Email</h5>
+                <p class="text-muted">contacto@bellaflor.com</p>
+              </div>
+            </div>
+            
+            <div class="text-center mt-4">
+              <a href="mailto:contacto@bellaflor.com" class="btn" style="background-color: #ff6b81; color: white;">Escríbenos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-4 bg-dark text-white">
+  <div class="container text-center">
+    <p class="mb-0">&copy; 2025 Florería Bella Flor | Todos los derechos reservados</p>
+  </div>
+</footer>
+
+{% endblock %}

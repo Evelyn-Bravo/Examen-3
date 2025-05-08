@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}Carrito de Compras{% endblock %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+        {% if carrito %}
+        <h1 class="text-center">Carrito de Compras</h1>
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Carrito</h3>
+                    <a href="{% url 'vaciar_carrito' %}" class="btn btn-danger btn-sm">
+                        <i class="fa fa-trash"></i> Vaciar Carrito
+                    </a>
+                    {% for item in carrito %}
+                    <div class="row mb-3">
+                        <div class="col-sm-3 text-center align-self-center">
+                            <img src="{{ item.producto.imagen.url }}" alt="{{ item.producto.nombre }}"
+                                class="img-fluid img-thumbnail" height="100" width="100">
+                        </div>
+                        <div class="col-sm-9">
+                            <h5>{{ item.producto.nombre }}</h5>
+                            <p>Precio: ${{ item.producto.precio }}</p>
+                            <p>Cantidad: {{ item.cantidad }}</p>
+                            <a class="minus-cart btn" data-pid="{{ item.producto.id }}"><i
+                                    class="fa-solid fa-minus"></i></a>
+                            <span class="cantidad">{{ item.cantidad }}</span>
+                            <a class="plus-cart btn" data-pid="{{ item.producto.id }}"><i
+                                    class="fa-solid fa-plus"></i></a>
+                            <div class="mt-2">
+                                <a href="#" class="remove-cart btn btn-sm btn-secondary"
+                                    data-pid="{{ item.producto.id }}">Quitar artículo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="text-muted">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Monto Total</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Cantidad
+                            <span id="total_items">{{ total_items }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Envio
+                            <span id="comprar"> $150.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Total</strong> <small>(incluyendo impuestos)</small>
+                            </div>
+                            <strong>$ <span id="total">{{ total }}</span></strong>
+                        </li>
+                    </ul>
+                    <div class="d-grid gap-2 mt-3">
+                        <a href="{% url 'catalogo' %}" class="btn"
+                            style="background-color: transparent; color: #ff6b81; border: 1px solid #ff6b81;">Seguir
+                            comprando</a>
+                        <a href="{% url 'checkout' %}" class="btn"
+                            style="background-color: #ff6b81; color: white; border: 1px solid #ff6b81;">Proceder a la
+                            compra</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <h1 class="text-center">Carrito de Compras Vacío</h1>
+        <div class="text-center my-4">
+            <i class="fas fa-shopping-cart" style="font-size: 100px;"></i>
+        </div>
+        <div class="text-center mt-3">
+            <a href="{% url 'catalogo' %}" class="btn" style="background-color: #ff6b81; color: white;">Continuar
+                Comprando</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script>
+    
+    // Incrementar cantidad
+    $('.plus-cart').click(function () {
+        var id = $(this).attr('data-pid');
+        // También seleccionar el párrafo de cantidad
+        var quantityText = $(this).closest('.row').find('p:contains("Cantidad:")');
+
+        $.ajax({
+            type: 'GET',
+            url: '/plus-cart/',
+            data: {
+                producto_id: id
+            },
+            success: function (data) {
+                location.reload();
+            }
+        });
+    });
+
+    // Decrementar cantidad
+    $('.minus-cart').click(function () {
+        var id = $(this).attr('data-pid');
+        // También seleccionar el párrafo de cantidad
+        var quantityText = $(this).closest('.row').find('p:contains("Cantidad:")');
+
+        $.ajax({
+            type: 'GET',
+            url: '/minus-cart/',
+            data: {
+                producto_id: id
+            },
+            success: function (data) {
+                location.reload(); //recargar la página para actualizar el carrito
+
+                // Si la cantidad llega a 0, eliminar el elemento
+                if (data.cantidad === 0) {
+                    $(this).closest('.row').remove();
+                    // Verificar si el carrito está vacío
+                    if (data.total_items === 0) {
+                        location.reload();
+                    }
+                }
+            }
+        });
+    });
+
+    // Eliminar del carrito
+    $('.remove-cart').click(function () {
+        var id = $(this).attr('data-pid');
+        var elm = $(this).closest('.row');
+        $.ajax({
+            type: 'GET',
+            url: '/remove-cart/',
+            data: {
+                producto_id: id
+            },
+            success: function (data) {
+                location.reload();
+
+                // Si el carrito está vacío, recargar para mostrar mensaje
+                if (data.total_items === 0) {
+                    location.reload();
+                }
+            }
+        });
+    });
+</script>
+
+{% endblock extrajs %}

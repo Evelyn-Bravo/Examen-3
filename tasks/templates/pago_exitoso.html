@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}¡Pago Exitoso!{% endblock %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow border-0">
+                <div class="card-body text-center py-5">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle" style="font-size: 80px; color: #4CAF50;"></i>
+                    </div>
+
+                    <h2 class="mb-4" style="color: #4CAF50;">¡Pago Exitoso!</h2>
+
+                    <p class="lead mb-4">Tu pedido ha sido procesado correctamente.</p>
+
+                    <div class="alert alert-success mb-4">
+                        <p class="mb-0">Pedido #{{ pedido.id }} - Fecha: {{ pedido.fecha|date:"d/m/Y H:i" }}</p>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header" style="background-color: #ff6b81; color: white;">
+                            <h5 class="mb-0">Detalles del Pedido</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th class="text-center">Cantidad</th>
+                                            <th class="text-end">Precio</th>
+                                            <th class="text-end">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in pedido.items.all %}
+                                        <tr>
+                                            <td>{{ item.producto.nombre }}</td>
+                                            <td class="text-center">{{ item.cantidad }}</td>
+                                            <td class="text-end">${{ item.precio }}</td>
+                                            <td class="text-end">${{ item.subtotal }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3" class="text-end"><strong>Subtotal:</strong></td>
+                                            <td class="text-end">${{ pedido.total|floatformat:2 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-end"><strong>Envío:</strong></td>
+                                            <td class="text-end">$50.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                            <td class="text-end"><strong>${{ pedido.total }}</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header" style="background-color: #ff6b81; color: white;">
+                            <h5 class="mb-0">Información de Envío</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col-md-6 text-md-end"><strong>Nombre:</strong></div>
+                                <div class="col-md-6 text-start">{{ pedido.cliente.nombre }} {{ pedido.cliente.apellido
+                                    }}</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6 text-md-end"><strong>Dirección:</strong></div>
+                                <div class="col-md-6 text-start">{{ pedido.cliente.direccion }}</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6 text-md-end"><strong>Ciudad:</strong></div>
+                                <div class="col-md-6 text-start">{{ pedido.cliente.ciudad }}, {{ pedido.cliente.estado
+                                    }} {{ pedido.cliente.codigo_postal }}</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6 text-md-end"><strong>Método de Pago:</strong></div>
+                                <div class="col-md-6 text-start">{{ pedido.get_metodo_pago_display }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>Hemos enviado un correo de confirmación a <strong>{{ pedido.cliente.correo }}</strong> con los
+                        detalles de tu pedido.</p>
+
+                    <div class="mt-5">
+                        <div class="text-center my-4">
+                            <i class="fas fa-flower" style="font-size: 48px; color: #ff6b81;"></i>
+                        </div>
+                        <p>¡Gracias por comprar con nosotros!</p>
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <a href="{% url 'home' %}" class="btn"
+                                style="background-color: transparent; color: #ff6b81; border: 1px solid #ff6b81;">
+                                Volver al Inicio
+                            </a>
+                            <a href="{% url 'catalogo' %}" class="btn"
+                                style="background-color: #ff6b81; color: white; border: 1px solid #ff6b81;">
+                                Seguir Comprando
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
